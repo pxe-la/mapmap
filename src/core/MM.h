@@ -63,8 +63,8 @@ public:
   static const QString SUPPORTED_FILE_VERSIONS;
 
   // GUI.
-  static const int DEFAULT_WINDOW_WIDTH = 640;
-  static const int DEFAULT_WINDOW_HEIGHT = 480;
+  static const int DEFAULT_WINDOW_WIDTH = 1280;
+  static const int DEFAULT_WINDOW_HEIGHT = 720;
   static const int TOOLBAR_ICON_SIZE = 48;
   static const int ZOOM_TOOLBAR_ICON_SIZE = 16;
   static const int ZOOM_TOOLBAR_BUTTON_SIZE = 20;

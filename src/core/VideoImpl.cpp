@@ -348,7 +348,12 @@ bool VideoImpl::createVideoComponents()
   }
 
   // Configure video appsink.
-  GstCaps *videoCaps = gst_caps_from_string ("video/x-raw,format=RGBA");
+  //GstCaps *videoCaps = gst_caps_new_simple("video/x-raw", "format", G_TYPE_STRING, "RGBA", NULL);
+  GstCaps *videoCaps = gst_caps_new_simple ("video/x-raw",
+     "format", G_TYPE_STRING, "RGBA",
+     "width", G_TYPE_INT, 1280,
+     "height", G_TYPE_INT, 720,
+     NULL);
   g_object_set (_capsfilter0, "caps", videoCaps, NULL);
 
   g_object_set (_appsink0, "emit-signals", TRUE,
@@ -358,7 +363,7 @@ bool VideoImpl::createVideoComponents()
                            NULL);
 
   g_signal_connect (_appsink0, "new-sample", G_CALLBACK (VideoImpl::gstNewSampleCallback), this);
-  gst_caps_unref (videoCaps);
+  // gst_caps_unref (videoCaps);
 
   return true;
 }

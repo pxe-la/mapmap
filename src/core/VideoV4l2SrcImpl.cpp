@@ -35,10 +35,10 @@ _v4l2src0(NULL)
 
 
 bool VideoV4l2SrcImpl::loadMovie(const QString& path) {
+  std::cout << "Path: " << path.toStdString() << endl;
   VideoImpl::loadMovie(path);
 
   _v4l2src0 = gst_element_factory_make("v4l2src", NULL);
-
   if ( !_v4l2src0)
   {
     qWarning() << "Not all elements could be created." << endl;
@@ -59,15 +59,11 @@ bool VideoV4l2SrcImpl::loadMovie(const QString& path) {
     return false;
   }
 
-  // Configure video appsink.
-  GstCaps *videoCaps = gst_caps_from_string ("video/x-raw,format=RGBA,width=640,height=480");
-  g_object_set (_capsfilter0, "caps", videoCaps, NULL);
-  gst_caps_unref (videoCaps);
+  g_object_set (_v4l2src0, "device", "/dev/video10", NULL);
 
-  // Retrieve meta-info.
-  _width = 640;
-  _height = 480;
-  //_duration = ;
+  _width = 1280;
+  _height = 720;
+
   _seekEnabled = false;
 
   setPlayState(true);
